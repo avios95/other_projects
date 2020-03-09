@@ -41,7 +41,7 @@
 $data = array ($_POST['vol'], $_POST['percent'], $_POST['cof']);
 $command = escapeshellcmd( '/usr/bin/python3 qwe.py ' . base64_encode(json_encode($data)));
 $python = shell_exec($command);
-echo $python, '' , date ("H:m:s");
+echo $python, '' , date ("H:i:s");
 
 include("table1x2.html");
 ?>
