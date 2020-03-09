@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Parser arbworld.net</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style>
+        body {
+		margin: 0 0 0 5%;
+		color: #585858;
+		font-family: Segoe UI;
+		font-size: 12px;
+		background: #F2F2F2;
+	}
+        
+	.hrefa{
+		text-align: center;
+		text-shadow: 7px -5px 15px #333333;
+		font-size: 45px;
+	}
+
+	td, th {
+		text-align: left;
+		border-left: 1px solid black;
+		border-bottom: 1px solid black;
+	}
+</style>
+</head>
+<body>
+<div class="hrefa">
+	<a href="https://www.arbworld.net/en/moneyway/mw-1-x-2">arbworld.net  1x2</a>
+</div>
+
+<form method='post'>
+ <p>vol:  <input type="text" name="vol" value="10000"></p>
+ <p>%:    <input type="text" name="percent" value="70"></p>
+ <p>cof:  <input type="text" name="cof" value="1.6"></p>
+ <button type="submit">Обновить таблицу</button></p>
+</form>
+
+<?php
+
+$data = array ($_POST['vol'], $_POST['percent'], $_POST['cof']);
+$command = escapeshellcmd( '/usr/bin/python3 qwe.py ' . base64_encode(json_encode($data)));
+$python = shell_exec($command);
+echo $python, '' , date ("H:m:s");
+
+include("table1x2.html");
+?>
+
+</body>
+</html>
