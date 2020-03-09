@@ -1,5 +1,0 @@
-FROM python:3.7-alpine
-RUN pip install -U user_agent
-RUN pip install -U requests
-RUN pip install -U bs4
-#RUN pip install -U lxml
