@@ -53,7 +53,6 @@ def get_table():
                     with open(events_file, 'a') as csvfile:
                         writerrow = csv.writer(csvfile)
                         writerrow.writerow(cof_list_list[2:13])
-                        print(cof_list_list)
             if float(cof_list_list[11].replace('€', '').replace('%', '').split()[0]) > percent:
                 if float(cof_list_list[8]) > cof_cof:
                     with open(events_file, 'a') as csvfile:
