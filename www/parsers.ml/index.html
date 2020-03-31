@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <style>
         body {
-		margin: 0 0 0 5%;
+		margin: 0 5% 2% 5%;
 		color: #585858;
 		font-family: Segoe UI;
 		font-size: 12px;
@@ -25,6 +25,13 @@
 </style>
 </head>
 <body>
+
+<?php
+ if(!file_exists('table1x2.html')){$fh = fopen('table1x2.html', 'w');fwrite($fh, $message."\n");}
+ if(!file_exists('droppingodds.html')){$fh = fopen('droppingodds.html', 'w');fwrite($fh, $message."\n");}
+ if(!file_exists('merge.html')){$fh = fopen('merge.html', 'w');fwrite($fh, $message."\n");}
+?>
+
 <div class="hrefa">
 	<a href="https://www.arbworld.net/en/moneyway/mw-1-x-2">arbworld.net  1x2</a>
 </div>
@@ -44,12 +51,12 @@ $command = escapeshellcmd( '/usr/bin/python3 qwe.py ' . base64_encode(json_encod
 $python = shell_exec($command);
 echo $python, '' , date ("H:i:s");
 
+echo '</br>Таблица совпадений';
+include("merge.html");
+echo '</br></br></br></br>Таблица 1x2';
 include("table1x2.html");
 echo '</br>Таблица разниц коефициентов';
 include("droppingodds.html");
-echo '</br>Таблица совпадений';
-include("merge.html");
-
 ?>
 
 </body>

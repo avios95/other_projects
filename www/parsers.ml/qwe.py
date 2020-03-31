@@ -26,7 +26,7 @@ def sendtelegram(text):
 
 def generate_xml_table(file1, file2):
     filein = open(file1, "r")
-    fileout = open(file2, "r")
+    fileout = open(file2, "w")
     data = filein.readlines()
     table = "<table>\n"
     # Create the table's column headers
@@ -150,10 +150,8 @@ def get_table_marge_telegram():
                 read2 = csv.reader(file2, delimiter=',')
                 for row2 in read2:
                     if row2[2].strip() in row1[2].strip() and row2[3].strip() in row1[9].strip():
-                        text = row2 + row1[6:9]
-                        score = 'New_Score ' + time.strftime('%H:%M %d.%m.%Y', time.localtime())
+                        text = row2 + row1[4:9]
                         if row2[2].strip() in "Home":
-                            sendtelegram(score)
                             continue
                         a = ''
                         for i in text:
@@ -170,10 +168,16 @@ def get_table_marge():
                 read2 = csv.reader(file2, delimiter=',')
                 for row2 in read2:
                     if row2[2].strip() in row1[2].strip() and row2[3].strip() in row1[9].strip():
-                        with open(filein3, 'a') as csvfile:
-                            writerrow = csv.writer(csvfile)
-                            text = row2 + row1[6:9]
-                            writerrow.writerow(text)
+                         if row2[2].strip() in "Home":
+                            with open(filein3, 'w') as csvfile:
+                               writerrow = csv.writer(csvfile)
+                               text = row2 + row1[4:9]
+                               writerrow.writerow(text)
+                         else: 
+                            with open(filein3, 'a') as csvfile:
+                               writerrow = csv.writer(csvfile)
+                               text = row2 + row1[4:9]
+                               writerrow.writerow(text)
 
 
 get_table_1x2()
