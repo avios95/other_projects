@@ -33,17 +33,23 @@
  <p>vol:  <input type="text" name="vol" value="10000"></p>
  <p>%:    <input type="text" name="percent" value="70"></p>
  <p>cof:  <input type="text" name="cof" value="1.6"></p>
+ <p>def_cof:  <input type="text" name="def_cof" value="0.6"></p>
  <button type="submit">Обновить таблицу</button></p>
 </form>
 
 <?php
 
-$data = array ($_POST['vol'], $_POST['percent'], $_POST['cof']);
+$data = array ($_POST['vol'], $_POST['percent'], $_POST['cof'], $_POST['def_cof']);
 $command = escapeshellcmd( '/usr/bin/python3 qwe.py ' . base64_encode(json_encode($data)));
 $python = shell_exec($command);
 echo $python, '' , date ("H:i:s");
 
 include("table1x2.html");
+echo '</br>Таблица разниц коефициентов';
+include("droppingodds.html");
+echo '</br>Таблица совпадений';
+include("merge.html");
+
 ?>
 
 </body>
