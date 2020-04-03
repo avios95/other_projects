@@ -120,21 +120,21 @@ def get_table_droppingodds():
             cof_list_list.append(cof.get_text(separator=' '))
 
         if len(cof_list_list[2:13]) == 0: continue
-        if float(cof_list_list[6].split()[1]) - float(cof_list_list[6].split()[0]) >= drop:
+        if float(cof_list_list[6].split()[0]) - float(cof_list_list[6].split()[1]) >= drop:
             with open(events_file, 'a') as csvfile:
                 writerrow = csv.writer(csvfile)
                 row = cof_list_list[2], cof_list_list[3], cof_list_list[4], cof_list_list[5], cof_list_list[
                     6], "", "", "", "", cof_list_list[11], cof_list_list[12]
                 writerrow.writerow(row)
 
-        if float(cof_list_list[8].split()[1]) - float(cof_list_list[8].split()[0]) >= drop:
+        if float(cof_list_list[8].split()[0]) - float(cof_list_list[8].split()[1]) >= drop:
             with open(events_file, 'a') as csvfile:
                 writerrow = csv.writer(csvfile)
                 row = cof_list_list[2], cof_list_list[3], cof_list_list[4], cof_list_list[5], "", "", cof_list_list[
                     8], "", "", cof_list_list[11], cof_list_list[12]
                 writerrow.writerow(row)
 
-        if float(cof_list_list[10].split()[1]) - float(cof_list_list[10].split()[0]) >= drop:
+        if float(cof_list_list[10].split()[0]) - float(cof_list_list[10].split()[1]) >= drop:
             with open(events_file, 'a') as csvfile:
                 writerrow = csv.writer(csvfile)
                 row = cof_list_list[2], cof_list_list[3], cof_list_list[4], cof_list_list[5], "", "", "", "", \
