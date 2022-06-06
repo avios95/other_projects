@@ -1,0 +1,54 @@
+version: "3"
+
+
+
+USER=
+DOMAIN=
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  networks:
+    default:
+      external:
+        name: ${USER}-network
+
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    links:
+      - db:mysql
+    ports:
+      - "80:80"
+    working_dir: /var/www/html
+    volumes:
+      - "/home/${USER}/${DOMAIN}/public_html/:/var/www/html/"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${USER}
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: ${USER}wp
+    networks:
+      - ${USER}-network
+  db:
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - "/home/${USER}/${DOMAIN}/mysql:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+
+
+
+
+
+
